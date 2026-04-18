@@ -97,6 +97,54 @@ namespace BookTracker2.ViewModels
             set => SetProperty(ref _isLoading, value);
         }
 
+        private string _authorSearch = string.Empty;
+        public string AuthorSearch
+        {
+            get => _authorSearch;
+            set
+            {
+                SetProperty(ref _authorSearch, value);
+                FilterAuthors(value);
+            }
+        }
+
+        private string _genreSearch = string.Empty;
+        public string GenreSearch
+        {
+            get => _genreSearch;
+            set {
+                SetProperty(ref _genreSearch, value);
+                FilterGenres(value);
+            }
+        }
+        private List<Author> _filteredAuthors = [];
+        public List<Author> FilteredAuthors
+        {
+            get => _filteredAuthors;
+            set => SetProperty(ref _filteredAuthors, value);
+        }
+
+        private List<Genre> _filteredGenres = [];
+        public List<Genre> FilteredGenres
+        {
+            get => _filteredGenres;
+            set => SetProperty(ref _filteredGenres, value);
+        }
+
+        private bool _showAuthorSuggestions;
+        public bool ShowAuthorSuggestions
+        {
+            get => _showAuthorSuggestions;
+            set => SetProperty(ref _showAuthorSuggestions, value);
+        }
+
+        private bool _showGenreSuggestions;
+        public bool ShowGenreSuggestions
+        {
+            get => _showGenreSuggestions;
+            set => SetProperty(ref _showGenreSuggestions, value);
+        }
+
         public BookDetailViewModel(DatabaseService databaseService)
         {
             _databaseService = databaseService;
@@ -106,6 +154,21 @@ namespace BookTracker2.ViewModels
         {
             Authors = await _databaseService.GetAllAuthorsAsync();
             Genres = await _databaseService.GetAllGenresAsync();
+
+            // restore search fields if editing an existing book
+            if (AuthorId != 0)
+            {
+                var author = Authors.FirstOrDefault(a => a.AuthorId == AuthorId);
+                if (author is not null)
+                    AuthorSearch = author.Name;
+            }
+
+            if (GenreId != 0)
+            {
+                var genre = Genres.FirstOrDefault(g => g.GenreId == GenreId);
+                if (genre is not null)
+                    GenreSearch = genre.Name;
+            }
         }
 
         private async Task LoadBookAsync(int bookId)
@@ -140,6 +203,42 @@ namespace BookTracker2.ViewModels
 
         public async Task SaveBookAsync()
         {
+            // find or create author
+            if (AuthorId == 0 && !string.IsNullOrWhiteSpace(AuthorSearch))
+            {
+                var existing = Authors
+                    .FirstOrDefault(a => a.Name.Equals(AuthorSearch, StringComparison.OrdinalIgnoreCase));
+
+                if (existing is not null)
+                {
+                    AuthorId = existing.AuthorId;
+                }
+                else
+                {
+                    var newAuthor = new Author { Name = AuthorSearch };
+                    await _databaseService.SaveAuthorAsync(newAuthor);
+                    AuthorId = newAuthor.AuthorId;
+                }
+            }
+
+            // find or create genre
+            if (GenreId == 0 && !string.IsNullOrWhiteSpace(GenreSearch))
+            {
+                var existing = Genres
+                    .FirstOrDefault(g => g.Name.Equals(GenreSearch, StringComparison.OrdinalIgnoreCase));
+
+                if (existing is not null)
+                {
+                    GenreId = existing.GenreId;
+                }
+                else
+                {
+                    var newGenre = new Genre { Name = GenreSearch };
+                    await _databaseService.SaveGenreAsync(newGenre);
+                    GenreId = newGenre.GenreId;
+                }
+            }
+
             var book = new Book
             {
                 BookId = BookId,
@@ -157,6 +256,52 @@ namespace BookTracker2.ViewModels
                 book.DateFinished = DateTime.UtcNow;
 
             await _databaseService.SaveBookAsync(book);
+        }
+
+        private void FilterAuthors(string search)
+        {
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                FilteredAuthors = [];
+                ShowAuthorSuggestions = false;
+                return;
+            }
+
+            FilteredAuthors = Authors
+                .Where(a => a.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            ShowAuthorSuggestions = FilteredAuthors.Count > 0;
+        }
+
+        private void FilterGenres(string search)
+        {
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                FilteredGenres = [];
+                ShowGenreSuggestions = false;
+                return;
+            }
+
+            FilteredGenres = Genres
+                .Where(g => g.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            ShowGenreSuggestions = FilteredGenres.Count > 0;
+        }
+
+        public void SelectAuthor(Author author)
+        {
+            AuthorId = author.AuthorId;
+            AuthorSearch = author.Name;
+            ShowAuthorSuggestions = false;
+        }
+
+        public void SelectGenre(Genre genre)
+        {
+            GenreId = genre.GenreId;
+            GenreSearch = genre.Name;
+            ShowGenreSuggestions = false;
         }
 
         public ICommand SaveCommand => new Command(async () =>

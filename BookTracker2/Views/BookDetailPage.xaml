@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:BookTracker2.Models"
              x:Class="BookTracker2.Views.BookDetailPage"
              Title="Book Details">
 
@@ -25,16 +26,36 @@
                    Keyboard="Numeric" />
 
             <Label Text="Author" />
-            <Picker Title="Select author"
-                    ItemsSource="{Binding Authors}"
-                    ItemDisplayBinding="{Binding Name}"
-                    SelectedIndexChanged="OnAuthorSelectedIndexChanged" />
+            <Entry Text="{Binding AuthorSearch}"
+                   Placeholder="Search or enter author name" />
+            <CollectionView ItemsSource="{Binding FilteredAuthors}"
+                            IsVisible="{Binding ShowAuthorSuggestions}"
+                            MaximumHeightRequest="150"
+                            SelectionMode="Single"
+                            SelectionChanged="OnAuthorSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Author">
+                        <Label Text="{Binding Name}"
+                               Padding="8" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <Label Text="Genre" />
-            <Picker Title="Select genre"
-                    ItemsSource="{Binding Genres}"
-                    ItemDisplayBinding="{Binding Name}"
-                    SelectedIndexChanged="OnGenreSelectedIndexChanged" />
+            <Entry Text="{Binding GenreSearch}"
+                   Placeholder="Search or enter genre name" />
+            <CollectionView ItemsSource="{Binding FilteredGenres}"
+                            IsVisible="{Binding ShowGenreSuggestions}"
+                            MaximumHeightRequest="150"
+                            SelectionMode="Single"
+                            SelectionChanged="OnGenreSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Genre">
+                        <Label Text="{Binding Name}"
+                               Padding="8" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <Label Text="Status" />
             <Picker Title="Select status"

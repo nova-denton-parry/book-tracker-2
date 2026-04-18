@@ -17,6 +17,7 @@ public partial class BookDetailPage : ContentPage
 	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
+
 		await _viewModel.InitializeAsync();
 
 		StatusPicker.ItemsSource = Enum.GetValues<ReadingStatus>().ToList();
@@ -26,22 +27,22 @@ public partial class BookDetailPage : ContentPage
 		FormatPicker.SelectedItem = _viewModel.Format;
 	}
 
-	private void OnAuthorSelectedIndexChanged(object sender, EventArgs e)
+	private void OnAuthorSelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is Picker picker && picker.SelectedItem is Author author)
-			_viewModel.AuthorId = author.AuthorId;
+		if (e.CurrentSelection.FirstOrDefault() is Author author) 
+			_viewModel.SelectAuthor(author);
 	}
 
-	private void OnGenreSelectedIndexChanged(object sender, EventArgs e)
+	private void OnGenreSelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is Picker picker && picker.SelectedItem is ReadingStatus status)
-			_viewModel.Status = status;
+		if (e.CurrentSelection.FirstOrDefault() is Genre genre)
+			_viewModel.SelectGenre(genre);
 	}
 
 	private void OnStatusSelectedIndexChanged(object sender, EventArgs e)
 	{
-		if (sender is Picker picker && picker.SelectedItem is BookFormat format)
-			_viewModel.Format = format;
+		if (sender is Picker picker && picker.SelectedItem is ReadingStatus status)
+			_viewModel.Status = status;
 	}
 	
 	private void OnFormatSelectedIndexChanged(object sender, EventArgs e)
