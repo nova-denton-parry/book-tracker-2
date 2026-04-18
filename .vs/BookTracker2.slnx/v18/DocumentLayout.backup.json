@@ -1,0 +1,143 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\theno\\source\\repos\\BookTracker2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|c:\\users\\theno\\source\\repos\\booktracker2\\booktracker2\\views\\bookdetailpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|solutionrelative:booktracker2\\views\\bookdetailpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|c:\\users\\theno\\source\\repos\\booktracker2\\booktracker2\\views\\bookspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|solutionrelative:booktracker2\\views\\bookspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|c:\\users\\theno\\source\\repos\\booktracker2\\booktracker2\\viewmodels\\bookdetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|solutionrelative:booktracker2\\viewmodels\\bookdetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|c:\\users\\theno\\source\\repos\\booktracker2\\booktracker2\\views\\bookdetailpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|solutionrelative:booktracker2\\views\\bookdetailpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|c:\\users\\theno\\source\\repos\\booktracker2\\booktracker2\\viewmodels\\booksviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|solutionrelative:booktracker2\\viewmodels\\booksviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|c:\\users\\theno\\source\\repos\\booktracker2\\booktracker2\\views\\bookspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|solutionrelative:booktracker2\\views\\bookspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|c:\\users\\theno\\source\\repos\\booktracker2\\booktracker2\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D0EB308-3368-4B7B-8C47-89FBB627A50C}|BookTracker2\\BookTracker2.csproj|solutionrelative:booktracker2\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookDetailViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\ViewModels\\BookDetailViewModel.cs",
+              "RelativeDocumentMoniker": "BookTracker2\\ViewModels\\BookDetailViewModel.cs",
+              "ToolTip": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\ViewModels\\BookDetailViewModel.cs",
+              "RelativeToolTip": "BookTracker2\\ViewModels\\BookDetailViewModel.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAAAKEAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T01:52:53.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookDetailPage.xaml",
+              "DocumentMoniker": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\Views\\BookDetailPage.xaml",
+              "RelativeDocumentMoniker": "BookTracker2\\Views\\BookDetailPage.xaml",
+              "ToolTip": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\Views\\BookDetailPage.xaml*",
+              "RelativeToolTip": "BookTracker2\\Views\\BookDetailPage.xaml*",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAADcAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-18T01:18:15.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BooksViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\ViewModels\\BooksViewModel.cs",
+              "RelativeDocumentMoniker": "BookTracker2\\ViewModels\\BooksViewModel.cs",
+              "ToolTip": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\ViewModels\\BooksViewModel.cs",
+              "RelativeToolTip": "BookTracker2\\ViewModels\\BooksViewModel.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAADUAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T01:11:17.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BooksPage.xaml",
+              "DocumentMoniker": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\Views\\BooksPage.xaml",
+              "RelativeDocumentMoniker": "BookTracker2\\Views\\BooksPage.xaml",
+              "ToolTip": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\Views\\BooksPage.xaml",
+              "RelativeToolTip": "BookTracker2\\Views\\BooksPage.xaml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACYAAACfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-18T00:56:01.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BooksPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\Views\\BooksPage.xaml.cs",
+              "RelativeDocumentMoniker": "BookTracker2\\Views\\BooksPage.xaml.cs",
+              "ToolTip": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\Views\\BooksPage.xaml.cs",
+              "RelativeToolTip": "BookTracker2\\Views\\BooksPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T00:47:43.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookDetailPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\Views\\BookDetailPage.xaml.cs",
+              "RelativeDocumentMoniker": "BookTracker2\\Views\\BookDetailPage.xaml.cs",
+              "ToolTip": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\Views\\BookDetailPage.xaml.cs",
+              "RelativeToolTip": "BookTracker2\\Views\\BookDetailPage.xaml.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA2wBkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T00:47:42.441Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "BookTracker2\\MauiProgram.cs",
+              "ToolTip": "C:\\Users\\theno\\source\\repos\\BookTracker2\\BookTracker2\\MauiProgram.cs",
+              "RelativeToolTip": "BookTracker2\\MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T16:45:40.82Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookTracker2.Views.BookDetailPage"
+             Title="Book Details">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save"
+                     Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}" />
+
+            <Label Text="Title" />
+            <Entry Text="{Binding Title}"
+                   Placeholder="Book title" />
+
+            <Label Text="ISBN" />
+            <Entry Text="{Binding ISBN}"
+                   Placeholder="ISBN (optional)"
+                   Keyboard="Numeric" />
+
+            <Label Text="Author" />
+            <Picker Title="Select author"
+                    ItemsSource="{Binding Authors}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedIndexChanged="OnAuthorSelectedIndexChanged" />
+
+            <Label Text="Genre" />
+            <Picker Title="Select genre"
+                    ItemsSource="{Binding Genres}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedIndexChanged="OnGenreSelectedIndexChanged" />
+
+            <Label Text="Status" />
+            <Picker Title="Select status"
+                    x:Name="StatusPicker"
+                    SelectedIndexChanged="OnStatusSelectedIndexChanged" />
+
+            <Label Text="Format" />
+            <Picker Title="Select format (optional)"
+                    x:Name="FormatPicker"
+                    SelectedIndexChanged="OnFormatSelectedIndexChanged" />
+
+            <Label Text="Rating (1-5 optional)" />
+            <HorizontalStackLayout Spacing="12">
+                <Stepper Minimum="1"
+                     Maximum="5"
+                     Increment="1"
+                     Value="{Binding Rating}" />
+                <Label Text="{Binding Rating}"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Label Text="Comment" />
+            <Editor Text="{Binding Comment}"
+                    Placeholder="Notes or comments (optional)"
+                    HeightRequest="100" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
