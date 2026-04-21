@@ -17,6 +17,7 @@ namespace BookTracker2.ViewModels
             {
                 SetProperty(ref _bookId, value);
                 LoadBookAsync(value).ConfigureAwait(false);
+                OnPropertyChanged(nameof(IsEditing));
             }
         }
 
@@ -145,10 +146,17 @@ namespace BookTracker2.ViewModels
             set => SetProperty(ref _showGenreSuggestions, value);
         }
 
-        public BookDetailViewModel(DatabaseService databaseService)
+        private readonly GoogleBooksService _googleBooksService;
+
+        public BookDetailViewModel(DatabaseService databaseService, GoogleBooksService googleBooksService)
         {
             _databaseService = databaseService;
+            _googleBooksService = googleBooksService;
         }
+
+        public event Action<string>? NotificationRequested;
+
+        public bool IsEditing => BookId != 0;
 
         public async Task InitializeAsync()
         {
@@ -160,15 +168,63 @@ namespace BookTracker2.ViewModels
             {
                 var author = Authors.FirstOrDefault(a => a.AuthorId == AuthorId);
                 if (author is not null)
-                    AuthorSearch = author.Name;
+                    SetAuthorSearchSilently(author.Name);
             }
 
             if (GenreId != 0)
             {
                 var genre = Genres.FirstOrDefault(g => g.GenreId == GenreId);
                 if (genre is not null)
-                    GenreSearch = genre.Name;
+                    SetGenreSearchSilently(genre.Name);
             }
+        }
+
+        public async Task LookupISBNAsync()
+        {
+
+            if (string.IsNullOrWhiteSpace(ISBN))
+                return; 
+
+            IsLoading = true;
+
+            try
+            {
+                var result = await _googleBooksService.LookupByISBNAsync(ISBN);
+
+                if (result is null)
+                {
+                    NotificationRequested?.Invoke("No book found for that ISBN.");
+                    return;
+                }
+
+                Title = result.Title ?? Title;
+
+                if (result.Authors?.FirstOrDefault() is string authorName)
+                    SetAuthorSearchSilently(authorName);
+
+                if (result.Categories?.FirstOrDefault() is string categoryName)
+                    SetGenreSearchSilently(categoryName);
+
+                NotificationRequested?.Invoke("Book found!");
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        private void SetAuthorSearchSilently(string value)
+        {
+            SetProperty(ref _authorSearch, value, nameof(AuthorSearch));
+            FilteredAuthors = [];
+            ShowAuthorSuggestions = false;
+        }
+
+        private void SetGenreSearchSilently(string value)
+        {
+            SetProperty(ref _genreSearch, value, nameof(GenreSearch));
+            FilteredGenres = [];
+            ShowGenreSuggestions = false;
         }
 
         private async Task LoadBookAsync(int bookId)
@@ -293,20 +349,38 @@ namespace BookTracker2.ViewModels
         public void SelectAuthor(Author author)
         {
             AuthorId = author.AuthorId;
-            AuthorSearch = author.Name;
+            SetAuthorSearchSilently(author.Name);
             ShowAuthorSuggestions = false;
         }
 
         public void SelectGenre(Genre genre)
         {
             GenreId = genre.GenreId;
-            GenreSearch = genre.Name;
+            SetGenreSearchSilently(genre.Name);
             ShowGenreSuggestions = false;
         }
 
         public ICommand SaveCommand => new Command(async () =>
         {
             await SaveBookAsync();
+            await Shell.Current.GoToAsync("..");
+        });
+
+        public ICommand LookupISBNCommand => new Command(async () => await LookupISBNAsync());
+
+        public ICommand DeleteCommand => new Command(async () =>
+        {
+            var confirm = await Shell.Current.DisplayAlertAsync(
+                "Delete Book",
+                "Are you sure you want to delete this book? This action cannot be undone.",
+                "Delete",
+                "Cancel");
+
+            if (!confirm)
+                return;
+
+            var book = new Book { BookId = BookId };
+            await _databaseService.DeleteBookAsync(book);
             await Shell.Current.GoToAsync("..");
         });
     }

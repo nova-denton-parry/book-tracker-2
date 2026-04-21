@@ -2,6 +2,7 @@
 using BookTracker2.Data;
 using BookTracker2.ViewModels;
 using BookTracker2.Views;
+using CommunityToolkit.Maui;
 
 namespace BookTracker2
 {
@@ -12,6 +13,7 @@ namespace BookTracker2
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -26,6 +28,8 @@ namespace BookTracker2
 
             builder.Services.AddTransient<BooksPage>();
             builder.Services.AddTransient<BookDetailPage>();
+
+            builder.Services.AddHttpClient<GoogleBooksService>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

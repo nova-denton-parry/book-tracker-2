@@ -21,9 +21,14 @@
                    Placeholder="Book title" />
 
             <Label Text="ISBN" />
-            <Entry Text="{Binding ISBN}"
+            <HorizontalStackLayout Spacing="8">
+                <Entry Text="{Binding ISBN}"
                    Placeholder="ISBN (optional)"
-                   Keyboard="Numeric" />
+                   Keyboard="Numeric" 
+                   HorizontalOptions="Fill" />
+                <Button Text="Lookup"
+                        Command="{Binding LookupISBNCommand}" />
+            </HorizontalStackLayout>
 
             <Label Text="Author" />
             <Entry Text="{Binding AuthorSearch}"
@@ -67,20 +72,21 @@
                     x:Name="FormatPicker"
                     SelectedIndexChanged="OnFormatSelectedIndexChanged" />
 
-            <Label Text="Rating (1-5 optional)" />
-            <HorizontalStackLayout Spacing="12">
-                <Stepper Minimum="1"
-                     Maximum="5"
-                     Increment="1"
-                     Value="{Binding Rating}" />
-                <Label Text="{Binding Rating}"
-                       VerticalOptions="Center" />
-            </HorizontalStackLayout>
+            <Label Text="Rating (optional)" />
+            <Picker Title="Select rating (optional)"
+                    x:Name="RatingPicker"
+                    SelectedIndexChanged="OnRatingSelectedIndexChanged" />
 
             <Label Text="Comment" />
             <Editor Text="{Binding Comment}"
                     Placeholder="Notes or comments (optional)"
                     HeightRequest="100" />
+
+            <Button Text="Delete Book"
+                    Command="{Binding DeleteCommand}"
+                    IsVisible="{Binding IsEditing}"
+                    TextColor="White"
+                    BackgroundColor="#C21807" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

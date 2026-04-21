@@ -6,18 +6,53 @@
              Title="My Books">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Filter"
+                     Command="{Binding ToggleFiltersCommand}" />
         <ToolbarItem Text="Add Book"
                      Command="{Binding NavigateToAddBookCommand}" />
     </ContentPage.ToolbarItems>
 
-    <Grid RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, Auto, *">
 
         <ActivityIndicator Grid.Row="0"
                            IsRunning="{Binding IsLoading}"
                            IsVisible="{Binding IsLoading}" />
 
-        <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding Books}">
+        <VerticalStackLayout Grid.Row="1"
+                             IsVisible="{Binding ShowFilters}"
+                             Padding="16"
+                             Spacing="8">
+
+            <SearchBar Placeholder="Search by title..."
+                       Text="{Binding SearchText}" />
+
+            <Picker Title="Filter by status"
+                    x:Name="StatusFilterPicker"
+                    SelectedIndexChanged="OnStatusFilterChanged" />
+
+            <Picker Title="Filter by format"
+                    x:Name="FormatFilterPicker"
+                    SelectedIndexChanged="OnFormatFilterChanged" />
+
+            <Picker Title="Filter by author"
+                    ItemsSource="{Binding Authors}"
+                    ItemDisplayBinding="{Binding Name}"
+                    x:Name="AuthorFilterPicker"
+                    SelectedIndexChanged="OnAuthorFilterChanged" />
+
+            <Picker Title="Filter by genre"
+                    ItemsSource="{Binding Genres}"
+                    ItemDisplayBinding="{Binding Name}"
+                    x:Name="GenreFilterPicker"
+                    SelectedIndexChanged="OnGenreFilterChanged" />
+
+            <Button Text="Clear Filters"
+                    Command="{Binding ClearFiltersCommand}" />
+
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding FilteredBooks}">
             <CollectionView.EmptyView>
                 <Label Text="No books yet. Tap 'Add Book' to get started!"
                        HorizontalOptions="Center"
