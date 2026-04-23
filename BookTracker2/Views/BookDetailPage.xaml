@@ -21,14 +21,16 @@
                    Placeholder="Book title" />
 
             <Label Text="ISBN" />
-            <HorizontalStackLayout Spacing="8">
-                <Entry Text="{Binding ISBN}"
+            <Grid ColumnDefinitions="*, Auto">
+                <Entry Grid.Column="0"
+                   Text="{Binding ISBN}"
                    Placeholder="ISBN (optional)"
                    Keyboard="Numeric" 
                    HorizontalOptions="Fill" />
-                <Button Text="Lookup"
-                        Command="{Binding LookupISBNCommand}" />
-            </HorizontalStackLayout>
+                <Button Grid.Column="1"
+                    Text="Lookup"
+                    Command="{Binding LookupISBNCommand}" />
+            </Grid>
 
             <Label Text="Author" />
             <Entry Text="{Binding AuthorSearch}"

@@ -6,25 +6,26 @@
              Title="My Books">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Filter"
+        <ToolbarItem Text="Additional Filters"
                      Command="{Binding ToggleFiltersCommand}" />
         <ToolbarItem Text="Add Book"
                      Command="{Binding NavigateToAddBookCommand}" />
     </ContentPage.ToolbarItems>
 
-    <Grid RowDefinitions="Auto, Auto, *">
+    <Grid RowDefinitions="Auto, Auto, Auto, *">
 
         <ActivityIndicator Grid.Row="0"
                            IsRunning="{Binding IsLoading}"
                            IsVisible="{Binding IsLoading}" />
 
-        <VerticalStackLayout Grid.Row="1"
+        <SearchBar Grid.Row="1"
+           Placeholder="Search by title..."
+           Text="{Binding SearchText}" />
+
+        <VerticalStackLayout Grid.Row="2"
                              IsVisible="{Binding ShowFilters}"
                              Padding="16"
                              Spacing="8">
-
-            <SearchBar Placeholder="Search by title..."
-                       Text="{Binding SearchText}" />
 
             <Picker Title="Filter by status"
                     x:Name="StatusFilterPicker"
@@ -46,12 +47,16 @@
                     x:Name="GenreFilterPicker"
                     SelectedIndexChanged="OnGenreFilterChanged" />
 
+            <Picker Title="Filter by rating"
+                    x:Name="RatingFilterPicker"
+                    SelectedIndexChanged="OnRatingFilterChanged" />
+
             <Button Text="Clear Filters"
                     Command="{Binding ClearFiltersCommand}" />
 
         </VerticalStackLayout>
 
-        <CollectionView Grid.Row="2"
+        <CollectionView Grid.Row="3"
                         ItemsSource="{Binding FilteredBooks}">
             <CollectionView.EmptyView>
                 <Label Text="No books yet. Tap 'Add Book' to get started!"

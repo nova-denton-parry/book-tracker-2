@@ -77,6 +77,19 @@ namespace BookTracker2.ViewModels
             }
         }
 
+        private int? _filterRating;
+        
+        public int? FilterRating
+        {
+            get => _filterRating;
+            set
+            {
+                value = value != null ? Math.Clamp((int)value, 0, 5) : value ;
+                SetProperty(ref _filterRating, value);
+                ApplyFilters();
+            }
+        }
+
         private List<Book> _allBooks = [];
         private List<Book> _filteredBooks = [];
         public List<Book> FilteredBooks
@@ -149,6 +162,9 @@ namespace BookTracker2.ViewModels
             if (FilterGenreId.HasValue)
                 filtered = filtered.Where(b => b.GenreId == FilterGenreId.Value);
 
+            if (FilterRating.HasValue)
+                filtered = filtered.Where(b => b.Rating == FilterRating.Value);
+
             FilteredBooks = filtered.ToList();
         }
 
@@ -172,11 +188,13 @@ namespace BookTracker2.ViewModels
             _filterFormat = null;
             _filterAuthorId = null;
             _filterGenreId = null;
+            _filterRating = null;
             SearchText = string.Empty;
             OnPropertyChanged(nameof(FilterStatus));
             OnPropertyChanged(nameof(FilterFormat));
             OnPropertyChanged(nameof(FilterAuthorId));
             OnPropertyChanged(nameof(FilterGenreId));
+            OnPropertyChanged(nameof(FilterRating));
             ApplyFilters();
             FiltersCleared?.Invoke();
         });
