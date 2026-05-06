@@ -18,15 +18,17 @@ BookTracker 2 allows you to track your personal book collection across Windows, 
 - Search books by title and filter by status, format, author, and genre
 - Google Books API integration — enter an ISBN to automatically populate title, author, and genre
 - Local SQLite database — no account or internet connection required (except for ISBN lookup)
+- Stats page with time period filtering by month, year, or all-time including books finished, average rating, favorite author, favorite genre, and most abandoned genre
 
 ---
 
 ## Planned Features
 
-- Reading progress and statistics page
 - Star rating UI to replace the current dropdown
 - Support for multiple authors and genres per book
 - General UI polish and layout improvements
+- Dark/light mode support
+- Installable exe/release
 
 ---
 
