@@ -260,7 +260,10 @@ namespace BookTracker2.ViewModels
         public async Task SaveBookAsync()
         {
             // find or create author
-            if (AuthorId == 0 && !string.IsNullOrWhiteSpace(AuthorSearch))
+            var currentAuthor = Authors.FirstOrDefault(a => a.AuthorId == AuthorId);
+
+            if (!string.IsNullOrWhiteSpace(AuthorSearch) &&
+                (AuthorId == 0 || currentAuthor?.Name != AuthorSearch))
             {
                 var existing = Authors
                     .FirstOrDefault(a => a.Name.Equals(AuthorSearch, StringComparison.OrdinalIgnoreCase));
@@ -278,7 +281,10 @@ namespace BookTracker2.ViewModels
             }
 
             // find or create genre
-            if (GenreId == 0 && !string.IsNullOrWhiteSpace(GenreSearch))
+            var currentGenre = Genres.FirstOrDefault(g => g.GenreId == GenreId);
+
+            if (!string.IsNullOrWhiteSpace(GenreSearch) &&
+                (GenreId == 0 || currentGenre?.Name != GenreSearch))
             {
                 var existing = Genres
                     .FirstOrDefault(g => g.Name.Equals(GenreSearch, StringComparison.OrdinalIgnoreCase));
