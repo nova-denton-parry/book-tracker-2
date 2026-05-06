@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookTracker2.Views.StatsPage"
+             Title="Stats">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}" />
+            
+            <!-- Time Period Selector -->
+            <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                <Button Text="This Month"
+                        x:Name="ThisMonthButton"
+                        Command="{Binding SelectPeriodCommand}"
+                        CommandParameter="ThisMonth" />
+                <Button Text="This Year"
+                        x:Name="ThisYearButton"
+                        Command="{Binding SelectPeriodCommand}"
+                        CommandParameter="ThisYear" />
+                <Button Text="All Time"
+                        x:Name="AllTimeButton"
+                        Command="{Binding SelectPeriodCommand}"
+                        CommandParameter="AllTime" />
+            </HorizontalStackLayout>
+            
+            <!-- Period Stats -->
+            <Label Text="Period Summary"
+                   FontSize="18"
+                   FontAttributes="Bold" />
+
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto" RowSpacing="8">
+                <Label Grid.Row="0" Grid.Column="0" Text="Books Finished" />
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding BooksFinished}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Average Rating" />
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding AverageRating, StringFormat='{0:F1}'}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Favorite Author" />
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding FavoriteAuthor}" />
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Favorite Genre" />
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding FavoriteGenre}" />
+
+                <Label Grid.Row="4" Grid.Column="0" Text="Most Abandoned Genre" />
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding MostAbandonedGenre}" />
+            </Grid>
+            
+            <!-- All Time Breakdown -->
+            <Label Text="All Time Breakdown"
+                   FontSize="18"
+                   FontAttributes="Bold" />
+
+            <Label Text="By Status" FontAttributes="Italic" />
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto, Auto" RowSpacing="8">
+                <Label Grid.Row="0" Grid.Column="0" Text="Unread" />
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding TotalUnread}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Reading" />
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding TotalReading}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Finished" />
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding TotalFinished}" />
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Abandoned" />
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding TotalAbandoned}" />
+            </Grid>
+
+            <Label Text="By Format" FontAttributes="Italic" />
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto" RowSpacing="8">
+                <Label Grid.Row="0" Grid.Column="0" Text="Physical" />
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding TotalPhysical}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Ebook" />
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding TotalEbook}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Audiobook" />
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding TotalAudiobook}" />
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

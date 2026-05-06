@@ -29,6 +29,9 @@ namespace BookTracker2
             builder.Services.AddTransient<BooksPage>();
             builder.Services.AddTransient<BookDetailPage>();
 
+            builder.Services.AddTransient<StatsViewModel>();
+            builder.Services.AddTransient<StatsPage>();
+
             builder.Services.AddHttpClient<GoogleBooksService>();
 
 #if DEBUG
